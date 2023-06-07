@@ -68,27 +68,30 @@ public class BookMenu {
 			break;
 		}
 	}
-	public void selectList() { //전체 도서 목록 출력 성공을 알리는 메서드
+	public void selectList() { //전체 도서 목록 출력 성공을 알리는 메서드, 구현완료 
 		if(bc.selectList()!=null)
 			System.out.println(bc.selectList());
 		else
 			System.out.println("존재하는 도서가 없습니다.");
 	}
-	public void searchBook() { // 특정도서 검색 결과를 보여주는 메서드
+	public void searchBook() { // 특정도서 검색 결과를 보여주는 메서드, 구현완료 
 		sc.nextLine();
-		String keyword=new String();
-		keyword=sc.nextLine();
+		System.out.print("키워드를 입력하세요:");
+		String keyword=sc.nextLine();
 		List<Book> tmp=bc.searchBook(keyword);
-		if(tmp==null)
-			System.out.println("검색결과가 없습니다.");
-		else
-			System.out.println(tmp);
+		try {
+		tmp.get(0);
+		System.out.println(tmp);
+		}
+		catch(IndexOutOfBoundsException e) {
+			System.out.println("일치하는 도서가 없습니다.");
+		}
 	}
-	public void deleteBook() { // 특정도서 삭제 성공을 알리는 메서드  
+	public void deleteBook() { // 특정도서 삭제 성공을 알리는 메서드 , 구현완료 
 		String title,author;
+		sc.nextLine();
 		System.out.print("삭제할 도서명:");
 		title=sc.nextLine();
-		sc.nextLine();
 		System.out.print("저자명 입력:");
 		author=sc.nextLine();
 		Book tmp=bc.deleteBook(title,author);

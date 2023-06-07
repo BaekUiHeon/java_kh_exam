@@ -48,8 +48,8 @@ public class Book {
 		else 
 			return false;
 		}
-	public int compareTo(Object o) {   //도서명과 작가이름이 같으면 같은 책으로 보고 1을반환, 아닐경우 0을 반환
-		if((this.getTitle()==((Book)o).getTitle()) &&(this.getAuthor()==((Book)o).getAuthor()))
+	public int compareTo(Book o) {   //도서명과 작가이름이 같으면 같은 책으로 보고 1을반환, 아닐경우 0을 반환
+		if((this.getTitle().equals(o.getTitle()))&&(this.getAuthor().equals(o.getAuthor())))
 			return 1;
 		else
 			return 0;

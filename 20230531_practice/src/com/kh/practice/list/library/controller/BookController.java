@@ -23,25 +23,33 @@ public class BookController {
 	public ArrayList<Book> searchBook(String keyword) { // 이름이 일치하는 북을, 선언한 ArrayList형 변수에 저장한후 그 변수를 반환.
 		ArrayList<Book> k=new ArrayList<>();
 		for(int i=0;;i++) {
-			if(list.get(i)==null)
-				break;
-			if(list.get(i).getTitle().contains(keyword))
-				k.add(list.get(i));
+			try {
+				if(list.get(i).getTitle().contains(keyword))
+					k.add(list.get(i));
+				if(list.get(i).getAuthor().contains(keyword))
+					k.add(list.get(i));
+				}
+			catch (IndexOutOfBoundsException e) {
+			}
+			finally {
+				return k;
+			}             
 		}
-		return k;               
 	}
 	public Book deleteBook(String title,String author) {
 		Book A= new Book(title,author,null,0);
-		Book B=null;
 		int i=0;
 		while(true) {
-			if(list.get(i)==null)
-				break;
-			else if((list.get(i).compareTo(A))==1)
+			try {
+			if((list.get(i).compareTo(A))==1) {
 				return list.remove(i);
+			}
+			}
+			catch(IndexOutOfBoundsException e) {
+				return null;
+			}
 			i++;
-			}	
-		return null;
+		}
 	}
 	public int ascBook() {  
 		return 1; //나중에 구현해보겠다.
